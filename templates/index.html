@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="col-md-6">
+        <div class="well">
+        <br>
+         <h1 class="text-align-center">Welcome to Doge Faucet </h1>
+    <br>
+    <br>
+    <br>
+       
+        <p class="lead"></p>
+        <h4>{{ user }}</h4>
+        
+        <h3>Click here to earn some Dogecoin!</h3>
+        <p><a class="btn btn-default" href="{{ url_for('faucet')}}">Faucet</a></p>
+        </div>
+    </div>
+ 
+
+{% endblock %}

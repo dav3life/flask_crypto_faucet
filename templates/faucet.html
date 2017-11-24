@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<script>
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var fiveMinutes = {{ seconds_left }},
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};
+</script>
+  
+    
+
+    <div class="col-md-6 ">
+    <div class="well">
+    <h5> {{ requested_address }}</h5>
+    <h5> You currently have collected {{ counter }} Coins !!</h5>
+    <h5> you have {{ payouts }} total payouts !!</h5>
+      <h4>{{ message }}</h4>    
+        {% if seconds_left > 0: %}
+          <h4>Sorry but you have to wait <span id="time"></span> minutes!</h4>
+        {% endif %} 
+      <form method="POST" >
+      {{ form.csrf_token }}
+      {{ form.recaptcha }}
+        {% for error in form.recaptcha.errors %}
+          <h2 style="color:red;"> Please fill out the Captcha </h2>
+        {% endfor %}
+      
+
+
+      <input type=submit  id="togglee" class="btn btn-default"  value="Claim Doge" />
+
+      </form> 
+      <h5 class="hidden" id="message"> Please Disbale Ad Blocker to claim Your Coins</h5>
+      </div>
+    </div>
+
+
+
+
+
+{% endblock %}
+
+
+
+<script src="https://authedmine.com/lib/simple-ui.min.js" async></script>
+<div class="coinhive-miner" 
+	style="width: 256px; height: 310px"
+	data-key="GRKX3cKvxTTi6oPVr7fqGrGWPC4zyh04">
+	<em>Loading...</em>
+</div>
